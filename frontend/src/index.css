@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  body {
+    @apply font-sans text-ink-800 antialiased;
+    background:
+      radial-gradient(1200px 600px at 8% -10%, rgba(34, 211, 238, 0.18), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%, rgba(192, 38, 211, 0.12), transparent 60%),
+      radial-gradient(900px 700px at 40% 110%, rgba(249, 115, 22, 0.1), transparent 60%),
+      #f4f7ff;
+    background-attachment: fixed;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-ink-900;
+  }
+  :focus-visible {
+    outline: 2px solid #2f5bff;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  ::selection {
+    background: #bacdff;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/80 bg-white/70 shadow-soft backdrop-blur-xl;
+  }
+  .surface {
+    @apply relative rounded-3xl border border-white/90 bg-gradient-to-b from-white/95 to-white/70 shadow-soft backdrop-blur-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 1px 1px rgba(13, 21, 54, 0.04),
+      0 2px 4px rgba(13, 21, 54, 0.04),
+      0 14px 26px -8px rgba(60, 60, 200, 0.16),
+      0 30px 50px -26px rgba(124, 77, 255, 0.2);
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, #2f5bff 0%, #7c4dff 45%, #c026d3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-brand-500 via-violet-500 to-fuchsia-500 px-4 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_12px_24px_-8px_rgba(124,77,255,0.7)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-ink-200 bg-white px-4 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold text-ink-600 transition-colors hover:bg-ink-100/70 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .input {
+    @apply w-full rounded-2xl border border-ink-200 bg-white/90 px-3.5 py-2.5 text-sm text-ink-900 transition-shadow placeholder:text-ink-300 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-500/15;
+  }
+  .input-error {
+    @apply border-coral-400 focus:border-coral-500 focus:ring-coral-500/15;
+  }
+  .skeleton {
+    @apply relative overflow-hidden rounded-xl bg-ink-100;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    animation: tg-shimmer 1.4s infinite;
+  }
+}
+
+/* ------------------------------- Keyframes ------------------------------- */
+@keyframes tg-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes tg-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes tg-blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(30px, -24px, 0) scale(1.08);
+  }
+}
+@keyframes tg-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+@keyframes tg-pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+@keyframes tg-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.25;
+  }
+}
+@keyframes tg-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes tg-road {
+  to {
+    stroke-dashoffset: -56;
+  }
+}
+
+.animate-float {
+  animation: tg-float 6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: tg-float 9s ease-in-out infinite;
+}
+.animate-blob {
+  animation: tg-blob 18s ease-in-out infinite;
+}
+.animate-blink {
+  animation: tg-blink 1s steps(1) infinite;
+}
+.pulse-ring {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: tg-pulse-ring 2.2s ease-out infinite;
+}
+.road-dash {
+  animation: tg-road 1.6s linear infinite;
+}
+
+/* ------------------------------ Range slider ------------------------------ */
+.tg-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent, #2f5bff) var(--pct, 50%), #e3e8f5 var(--pct, 50%));
+  outline-offset: 8px;
+}
+.tg-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent, #2f5bff);
+  box-shadow: 0 4px 10px rgba(13, 21, 54, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tg-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent, #2f5bff);
+  box-shadow: 0 4px 10px rgba(13, 21, 54, 0.22);
+}
+.tg-range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+.tg-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px rgba(47, 91, 255, 0.25);
+}
+.tg-range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 6px rgba(47, 91, 255, 0.25);
+}
+
+/* --------------------------------- Leaflet -------------------------------- */
+.leaflet-container {
+  font-family: inherit;
+  background: #e9efff;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 18px;
+  box-shadow: 0 18px 40px -12px rgba(13, 21, 54, 0.35);
+  padding: 0;
+}
+.leaflet-popup-content {
+  margin: 14px 16px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.leaflet-tooltip {
+  border: 0;
+  border-radius: 10px;
+  padding: 4px 9px;
+  font-weight: 600;
+  color: #16204a;
+  box-shadow: 0 8px 20px -8px rgba(13, 21, 54, 0.4);
+}
+.leaflet-control-zoom {
+  border: 0 !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(13, 21, 54, 0.08), 0 16px 30px -10px rgba(80, 60, 220, 0.45) !important;
+}
+.leaflet-control-zoom a {
+  width: 38px !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  color: #243055 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s, color 0.15s;
+}
+.leaflet-control-zoom a:hover {
+  background: #eef3ff !important;
+  color: #1e43e0 !important;
+}
+.tg-pin > div {
+  transition: transform 0.18s ease;
+}
+.tg-pin:hover > div {
+  transform: translateY(-3px) scale(1.12);
+}
+.tg-pop {
+  animation: tg-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.tg-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tg-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.tg-dot:hover {
+  filter: drop-shadow(0 4px 6px rgba(13, 21, 54, 0.35));
+}
+.tg-radius {
+  filter: drop-shadow(0 0 10px rgba(124, 77, 255, 0.35));
+}
+.tg-popup .leaflet-popup-content-wrapper {
+  border-radius: 22px;
+  overflow: hidden;
+}
+.tg-popup .leaflet-popup-content {
+  margin: 0;
+}
+.tg-pin {
+  background: none;
+  border: 0;
+}
+.route-flow {
+  stroke-dasharray: 2 12;
+  stroke-linecap: round;
+  animation: tg-flow 0.9s linear infinite;
+}
+
+/* ----------------------------- Reduced motion ----------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
