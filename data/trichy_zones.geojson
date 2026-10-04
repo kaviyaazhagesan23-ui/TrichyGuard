@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "description": "UNVERIFIED TEMPLATE: Polygon coordinates for Trichy zones are currently incomplete and must be populated with verified municipal boundaries before geographic identification can be performed.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "Zone_1_Srirangam"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "Zone_2_Cantonment"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "Zone_3_ThillaiNagar"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "Zone_4_Rockfort"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "Zone_5_Ariyamangalam"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    }
+  ]
+}
